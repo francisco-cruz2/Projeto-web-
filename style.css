@@ -2,18 +2,18 @@
    Instituto Santa Rosa — Parceria Conjunto Esperança — design tokens
    ================================ */
 :root {
-  --forest: #1F3D2E;
-  --forest-deep: #14291E;
-  --ochre: #D98E2B;
-  --ochre-deep: #B5721B;
-  --paper: #F3F5EF;
+  --forest: #22314A;
+  --forest-deep: #141C2B;
+  --ochre: #2F8577;
+  --ochre-deep: #1F6155;
+  --paper: #F6F5F1;
   --paper-card: #FFFFFF;
-  --ink: #1E2A22;
-  --ink-soft: #4A5A4F;
-  --line: #C9D3C4;
+  --ink: #1D2430;
+  --ink-soft: #5B6472;
+  --line: #D9DCE1;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --measure: 62ch;
 }
@@ -98,7 +98,7 @@ select:focus-visible {
 
 .main-nav a {
   text-decoration: none;
-  color: #E7EBE4;
+  color: #D7DEE8;
   font-size: 0.98rem;
   padding: 0.35rem 0.1rem;
   border-bottom: 2px solid transparent;
@@ -154,6 +154,8 @@ section + section { border-top: 1px solid var(--line); }
 
 .hero h1 {
   font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.08;
   margin: 0 0 1.25rem;
@@ -256,7 +258,7 @@ picture:has(.institutional-img) {
   display: inline-block;
   font-size: 0.78rem;
   color: var(--forest);
-  background: #E7EEE3;
+  background: #E3EFEC;
   border: 1px solid var(--line);
   padding: 0.15rem 0.55rem;
   margin-bottom: 0.75rem;
@@ -392,7 +394,7 @@ input:valid:not(:placeholder-shown) {
 
 .form-status {
   border: 1px solid var(--forest);
-  background: #E7EEE3;
+  background: #E3EFEC;
   color: var(--forest-deep);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
@@ -403,7 +405,7 @@ input:valid:not(:placeholder-shown) {
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--forest-deep);
-  color: #C9D3C4;
+  color: #B7C0CC;
   padding: 2.5rem 0;
   font-size: 0.9rem;
 }
@@ -424,16 +426,28 @@ input:valid:not(:placeholder-shown) {
   flex-wrap: wrap;
 }
 
-.footer-grid a { text-decoration: none; color: #C9D3C4; }
+.footer-grid a { text-decoration: none; color: #B7C0CC; }
 .footer-grid a:hover { color: #fff; }
 .footer-grid address { font-style: normal; }
 
 .footer-credit {
   font-size: 0.85rem;
-  color: #9FB0A2;
+  color: #8892A0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
-.footer-credit a { color: #C9D3C4; text-decoration: underline; }
+.footer-credit a { color: #B7C0CC; text-decoration: underline; }
 .footer-credit a:hover { color: #fff; }
+
+.footer-credit .avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #3A4863;
+  flex-shrink: 0;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 780px) {
