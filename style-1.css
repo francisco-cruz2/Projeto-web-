@@ -1,0 +1,446 @@
+/* ================================
+   Instituto Santa Rosa — Parceria Conjunto Esperança — design tokens
+   ================================ */
+:root {
+  --forest: #1F3D2E;
+  --forest-deep: #14291E;
+  --ochre: #D98E2B;
+  --ochre-deep: #B5721B;
+  --paper: #F3F5EF;
+  --paper-card: #FFFFFF;
+  --ink: #1E2A22;
+  --ink-soft: #4A5A4F;
+  --line: #C9D3C4;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --measure: 62ch;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  background: var(--forest);
+  color: #fff;
+  padding: 0 1.5rem;
+}
+
+.site-header .header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.brand span {
+  color: var(--ochre);
+  font-style: italic;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #E7EBE4;
+  font-size: 0.98rem;
+  padding: 0.35rem 0.1rem;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  color: #fff;
+  border-bottom-color: var(--ochre);
+}
+
+/* ---------- Layout helpers ---------- */
+main { display: block; }
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section { padding: 3.5rem 0; }
+section + section { border-top: 1px solid var(--line); }
+
+.section-head {
+  max-width: var(--measure);
+  margin-bottom: 2rem;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: 0 0 0.5rem;
+  color: var(--forest-deep);
+}
+
+.section-head p {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 4rem 0 3rem;
+  border-top: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  margin: 0 0 1.25rem;
+  color: var(--forest-deep);
+  max-width: 14ch;
+}
+
+.hero .lede {
+  max-width: var(--measure);
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: grid;
+  gap: 1.5rem;
+  border-left: 1px solid var(--line);
+  padding-left: 2rem;
+}
+
+.stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--ochre-deep);
+  line-height: 1;
+}
+
+.stat span {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.75rem 1.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ochre);
+  color: var(--forest-deep);
+}
+.btn-primary:hover { background: var(--ochre-deep); color: #fff; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--forest-deep);
+  border-color: var(--forest-deep);
+}
+.btn-outline:hover { background: var(--forest-deep); color: #fff; }
+
+/* ---------- Cards / articles ---------- */
+.institutional-img,
+picture:has(.institutional-img) {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  color: var(--forest-deep);
+}
+
+.card p { color: var(--ink-soft); margin: 0; }
+
+.card .tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--forest);
+  background: #E7EEE3;
+  border: 1px solid var(--line);
+  padding: 0.15rem 0.55rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Steps (genuine sequence) ---------- */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.steps .num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ochre-deep);
+  border-bottom: 2px solid var(--ochre);
+  text-align: right;
+}
+
+.steps h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  color: var(--forest-deep);
+}
+.steps p { margin: 0; color: var(--ink-soft); }
+
+/* ---------- Project detail blocks ---------- */
+.project {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.project + .project { border-top: 1px solid var(--line); }
+
+.project .meta {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.project h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0 0 0.4rem;
+  color: var(--forest-deep);
+}
+
+.project ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Forms ---------- */
+.form-shell {
+  max-width: 640px;
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+legend {
+  font-family: var(--font-display);
+  padding: 0 0.5rem;
+  color: var(--forest-deep);
+  font-size: 1.1rem;
+}
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--forest-deep);
+}
+
+.field .hint {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 0.3rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* native validity styling */
+input:invalid:not(:placeholder-shown) {
+  border-color: #B5432B;
+}
+input:valid:not(:placeholder-shown) {
+  border-color: var(--forest);
+}
+
+.field .error-msg {
+  display: none;
+  color: #8C3A24;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+.field.show-error .error-msg { display: block; }
+.field.show-error input { border-color: #8C3A24; }
+
+.form-status {
+  border: 1px solid var(--forest);
+  background: #E7EEE3;
+  color: var(--forest-deep);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+.form-status.visible { display: block; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--forest-deep);
+  color: #C9D3C4;
+  padding: 2.5rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-grid nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-grid a { text-decoration: none; color: #C9D3C4; }
+.footer-grid a:hover { color: #fff; }
+.footer-grid address { font-style: normal; }
+
+.footer-credit {
+  font-size: 0.85rem;
+  color: #9FB0A2;
+}
+.footer-credit a { color: #C9D3C4; text-decoration: underline; }
+.footer-credit a:hover { color: #fff; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 780px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .stats { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .project { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .main-nav ul { gap: 1.1rem; }
+}
