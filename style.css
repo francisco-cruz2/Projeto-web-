@@ -2,10 +2,13 @@
    Instituto Santa Rosa — Parceria Conjunto Esperança — design tokens
    ================================ */
 :root {
+  /* cores — primárias (marca/navegação) */
   --forest: #22314A;
   --forest-deep: #141C2B;
+  /* cores — secundárias (ações, destaques) */
   --ochre: #2F8577;
   --ochre-deep: #1F6155;
+  /* cores — neutras (fundos, texto, bordas) */
   --paper: #F6F5F1;
   --paper-card: #FFFFFF;
   --ink: #1D2430;
@@ -14,6 +17,23 @@
 
   --font-display: "Newsreader", Georgia, serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* escala tipográfica — 6 patamares hierárquicos */
+  --text-xs: 0.82rem;    /* dicas, legendas, mensagens de erro */
+  --text-sm: 0.92rem;    /* rótulos de campo, navegação */
+  --text-base: 1rem;     /* corpo de texto padrão */
+  --text-md: 1.1rem;     /* parágrafo de introdução (lede) */
+  --text-lg: 1.35rem;    /* títulos de cartão / h3 */
+  --text-xl: clamp(1.6rem, 3vw, 2.1rem);   /* títulos de seção / h2 */
+  --text-2xl: clamp(2.2rem, 5vw, 3.4rem);  /* título principal / h1 */
+
+  /* escala de espaçamento modular — base 0.5rem (8px), progressão geométrica */
+  --space-1: 0.5rem;   /* 8px  */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-5: 3rem;     /* 48px */
+  --space-6: 3.5rem;   /* 56px */
 
   --measure: 62ch;
 }
@@ -60,6 +80,7 @@ select:focus-visible {
 }
 
 .site-header .header-inner {
+  position: relative;
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
@@ -68,6 +89,68 @@ select:focus-visible {
   min-height: 4.25rem;
   flex-wrap: wrap;
   gap: 0.75rem 1.5rem;
+}
+
+/* ---------- Mobile menu toggle (hamburger) ---------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Dropdown submenu (desktop) ---------- */
+.has-dropdown { position: relative; }
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0.5rem 0;
+  background: var(--forest-deep);
+  border: 1px solid rgba(255,255,255,0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 30;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li a {
+  display: block;
+  padding: 0.5rem 1.1rem;
+  white-space: nowrap;
+  border-bottom: none;
+  font-size: var(--text-sm);
 }
 
 .brand {
@@ -119,18 +202,18 @@ main { display: block; }
   padding: 0 1.5rem;
 }
 
-section { padding: 3.5rem 0; }
+section { padding: var(--space-6) 0; }
 section + section { border-top: 1px solid var(--line); }
 
 .section-head {
   max-width: var(--measure);
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-4);
 }
 
 .section-head h1,
 .section-head h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-size: var(--text-xl);
   margin: 0 0 0.5rem;
   color: var(--forest-deep);
 }
@@ -142,22 +225,25 @@ section + section { border-top: 1px solid var(--line); }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 4rem 0 3rem;
+  padding: var(--space-6) 0 var(--space-5);
   border-top: none;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 3rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-5);
   align-items: end;
 }
+
+.hero-grid > div:first-child { grid-column: span 8; }
+.hero-grid .stats { grid-column: span 4; }
 
 .hero h1 {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: var(--text-2xl);
   line-height: 1.08;
   margin: 0 0 1.25rem;
   color: var(--forest-deep);
@@ -166,22 +252,22 @@ section + section { border-top: 1px solid var(--line); }
 
 .hero .lede {
   max-width: var(--measure);
-  font-size: 1.1rem;
+  font-size: var(--text-md);
   color: var(--ink-soft);
-  margin: 0 0 1.75rem;
+  margin: 0 0 var(--space-3);
 }
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 
 .stats {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--space-3);
   border-left: 1px solid var(--line);
-  padding-left: 2rem;
+  padding-left: var(--space-4);
 }
 
 .stat b {
@@ -236,19 +322,21 @@ picture:has(.institutional-img) {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-3);
 }
+
+.card-grid .card { grid-column: span 4; }
 
 .card {
   background: var(--paper-card);
   border: 1px solid var(--line);
-  padding: 1.5rem;
+  padding: var(--space-3);
 }
 
 .card h3 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   margin: 0 0 0.5rem;
   color: var(--forest-deep);
 }
@@ -299,10 +387,13 @@ picture:has(.institutional-img) {
 /* ---------- Project detail blocks ---------- */
 .project {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 2rem;
-  padding: 2rem 0;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
 }
+
+.project .meta { grid-column: span 4; }
+.project > div:last-child { grid-column: span 8; }
 
 .project + .project { border-top: 1px solid var(--line); }
 
@@ -313,7 +404,7 @@ picture:has(.institutional-img) {
 
 .project h2 {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: var(--text-lg);
   margin: 0 0 0.4rem;
   color: var(--forest-deep);
 }
@@ -331,8 +422,8 @@ picture:has(.institutional-img) {
 
 fieldset {
   border: 1px solid var(--line);
-  padding: 1.5rem;
-  margin: 0 0 1.5rem;
+  padding: var(--space-3);
+  margin: 0 0 var(--space-3);
 }
 
 legend {
@@ -343,19 +434,19 @@ legend {
 }
 
 .field {
-  margin-bottom: 1.15rem;
+  margin-bottom: var(--space-2);
 }
 
 .field label {
   display: block;
-  font-size: 0.92rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   margin-bottom: 0.35rem;
   color: var(--forest-deep);
 }
 
 .field .hint {
-  font-size: 0.82rem;
+  font-size: var(--text-xs);
   color: var(--ink-soft);
   margin-top: 0.3rem;
 }
@@ -372,9 +463,11 @@ input, select, textarea {
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-2);
 }
+
+.two-col .field { grid-column: span 6; }
 
 /* native validity styling */
 input:invalid:not(:placeholder-shown) {
@@ -412,11 +505,14 @@ input:valid:not(:placeholder-shown) {
 }
 
 .footer-grid {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
+  align-items: start;
 }
+
+.footer-grid address { grid-column: span 8; }
+.footer-grid nav { grid-column: span 4; }
 
 .footer-grid nav ul {
   list-style: none;
@@ -451,11 +547,74 @@ input:valid:not(:placeholder-shown) {
 }
 
 /* ---------- Responsive ---------- */
+/* ---------- Breakpoints (mobile-first refinements, aplicados de cima pra baixo) ---------- */
+
+/* 1280px — telas grandes: reduz um pouco o respiro do grid principal */
+@media (max-width: 1280px) {
+  .hero-grid { gap: var(--space-4); }
+  .card-grid { gap: var(--space-2); }
+}
+
+/* 1024px — tablets em modo paisagem / notebooks pequenos: cartões passam de 3 para 2 colunas */
+@media (max-width: 1024px) {
+  .card-grid .card { grid-column: span 6; }
+  .project .meta { grid-column: span 5; }
+  .project > div:last-child { grid-column: span 7; }
+}
+
+/* 780px — tablets em pé: empilha os grids macro de 12 colunas em coluna única */
 @media (max-width: 780px) {
+  .nav-toggle { display: flex; }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--forest-deep);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .main-nav.is-open { max-height: 420px; }
+  .main-nav ul { flex-direction: column; align-items: flex-start; padding: 1rem 1.5rem; gap: 1rem; }
+
+  .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    padding: 0.25rem 0 0 1rem;
+    margin: 0.5rem 0 0;
+  }
+  .dropdown li a { padding: 0.35rem 0; }
+
   .hero-grid { grid-template-columns: 1fr; }
+  .hero-grid > div:first-child,
+  .hero-grid .stats { grid-column: span 12; }
   .stats { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 1.5rem; }
-  .card-grid { grid-template-columns: 1fr; }
+  .card-grid .card { grid-column: span 12; }
   .project { grid-template-columns: 1fr; }
-  .two-col { grid-template-columns: 1fr; }
+  .project .meta,
+  .project > div:last-child { grid-column: span 12; }
+  .two-col .field { grid-column: span 12; }
+  .footer-grid address,
+  .footer-grid nav { grid-column: span 12; }
   .main-nav ul { gap: 1.1rem; }
+}
+
+/* 640px — celulares grandes: reduz a escala tipográfica de destaque e o espaçamento de seção */
+@media (max-width: 640px) {
+  section { padding: var(--space-5) 0; }
+  .hero { padding: var(--space-5) 0 var(--space-4); }
+  :root { --text-2xl: clamp(1.9rem, 7vw, 2.6rem); }
+}
+
+/* 480px — celulares pequenos: aperta o respiro lateral e o padding interno dos cartões */
+@media (max-width: 480px) {
+  .wrap { padding: 0 1rem; }
+  .card { padding: var(--space-2); }
+  fieldset { padding: var(--space-2); }
 }
