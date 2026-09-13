@@ -1,9 +1,30 @@
-// Instituto Semente — máscaras e validação do formulário de cadastro
+// Instituto Santa Rosa — menu mobile, máscaras e validação do formulário de cadastro
 (function () {
   "use strict";
 
+  /* -----------------------------------------
+     Menu mobile (hambúrguer) — roda em todas as páginas
+     ----------------------------------------- */
+  const navToggle = document.getElementById("nav-toggle");
+  const mainNav = document.getElementById("main-nav");
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // fecha o menu ao clicar num link (evita ficar aberto após navegar/rolar até a âncora)
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
   const form = document.getElementById("cadastro-form");
-  if (!form) return; // este script só roda na página de cadastro
+  if (!form) return; // o restante deste script só roda na página de cadastro
 
   /* -----------------------------------------
      Máscaras de entrada (somente dígitos -> formato)
